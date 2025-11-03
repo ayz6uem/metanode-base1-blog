@@ -1,34 +1,34 @@
 ### register
-POST http://localhost:8080/register
+POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "username" : "jackson",
+  "username" : "jackson1",
   "password" : "123456",
   "email" : "jackson@163.com"
 }
 
 ### login
-POST http://localhost:8080/login
+POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-  "username" : "jackson",
+  "username" : "jackson1",
   "password" : "123456"
 }
 
 > {%
-    client.global.set("token", response.body.token)
+    client.global.set("token", response.body.data.token)
 %}
 
 ### info
-GET http://localhost:8080/my
+GET http://localhost:8080/api/users/info
 Authorization: Bearer {{token}}
 
 
 ### post create
-POST http://localhost:8080/post
-#Authorization: Bearer {{token}}
+POST http://localhost:8080/api/posts
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -37,10 +37,10 @@ Content-Type: application/json
 }
 
 ### post list
-GET http://localhost:8080/post?page=1&size=10
+GET http://localhost:8080/api/posts?page=1&size=10
 
 ### post update
-PUT http://localhost:8080/post/1
+PUT http://localhost:8080/api/posts/6
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -50,20 +50,20 @@ Content-Type: application/json
 }
 
 ### post delete
-DELETE http://localhost:8080/post/2
+DELETE http://localhost:8080/api/posts/6
 Authorization: Bearer {{token}}
 
 ### post comment
-POST http://localhost:8080/post/1/comment
+POST http://localhost:8080/api/posts/1/comments
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "content": "Great post!"
+  "content": "Great post!111"
 }
 
 ### post comments list
-GET http://localhost:8080/post/1/comment
+GET http://localhost:8080/api/posts/1/comments
 
 
 

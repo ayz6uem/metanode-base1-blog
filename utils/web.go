@@ -1,4 +1,4 @@
-package web
+package utils
 
 import (
 	"strings"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetToken(c *gin.Context) string {
+func RequestToken(c *gin.Context) string {
 	authorization := c.GetHeader("Authorization")
 	if authorization != "" && strings.HasPrefix(authorization, "Bearer ") {
 		return strings.TrimPrefix(authorization, "Bearer ")
