@@ -1,0 +1,72 @@
+### register
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username" : "jackson",
+  "password" : "123456",
+  "email" : "jackson@163.com"
+}
+
+### login
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username" : "jackson",
+  "password" : "123456"
+}
+
+> {%
+    client.global.set("token", response.body.token)
+%}
+
+### info
+GET http://localhost:8080/my
+Authorization: Bearer {{token}}
+
+
+### post create
+POST http://localhost:8080/post
+#Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My first post",
+  "content": "This is the content of my first post."
+}
+
+### post list
+GET http://localhost:8080/post?page=1&size=10
+
+### post update
+PUT http://localhost:8080/post/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My first post(updated)1",
+  "content": "This is the content of my first post.(updated)1"
+}
+
+### post delete
+DELETE http://localhost:8080/post/2
+Authorization: Bearer {{token}}
+
+### post comment
+POST http://localhost:8080/post/1/comment
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Great post!"
+}
+
+### post comments list
+GET http://localhost:8080/post/1/comment
+
+
+
+
+
+
